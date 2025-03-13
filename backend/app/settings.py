@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+from db_config import get_db
 
 load_dotenv()
 
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Installed apps
     'rest_framework',
+    'testapp',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+db = get_db()
+collection = db["comments"]
+result = collection.find_one({})
+print(result)
